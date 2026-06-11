@@ -11,7 +11,8 @@
     "deploy:onchain:testnet": "hardhat run deployment/scripts/deploy-onchain.js --network bsctest",
     "deploy:onchain:local": "hardhat run deployment/scripts/deploy-onchain.js",
     "mint:testnet": "hardhat run mint/scripts/mint.js --network bsctest",
-    "mint:local": "hardhat run mint/scripts/mint.js"
+    "mint:local": "hardhat run mint/scripts/mint.js",
+    "mint:onchain:testnet": "hardhat run mint/scripts/mint-onchain.js --network bsctest"
   },
   "license": "MIT",
   "devDependencies": {
