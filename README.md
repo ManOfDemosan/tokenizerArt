@@ -71,6 +71,7 @@ npm run mint:testnet
 | NFT Contract | [`0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a`](https://testnet.bscscan.com/address/0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a) |
 | Verified Source | [View Code](https://testnet.bscscan.com/address/0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a#code) |
 | OnChain NFT | [`0x9726ECFD907cFb37FA1ea7248b5b2134Dcf9F87B`](https://testnet.bscscan.com/address/0x9726ECFD907cFb37FA1ea7248b5b2134Dcf9F87B) |
+| OnChain Mint Tx | [`0x4d6ddbb6...`](https://testnet.bscscan.com/tx/0x4d6ddbb68cc32f2dfa498609b0aeed59343c86d77b99f576a6436b63d59f3db8) (token #0, fully on-chain SVG) |
 | Token Tracker | [42 Art by jaehwkim (J42ART)](https://testnet.bscscan.com/token/0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a) |
 | Explorer | https://testnet.bscscan.com |
 

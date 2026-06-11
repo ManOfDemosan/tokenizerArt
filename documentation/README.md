@@ -54,6 +54,7 @@ cp .env.example .env
 | `npm run mint:local` | Mint on local Hardhat network |
 | `npm run mint:testnet` | Mint on BNB Testnet |
 | `npm run deploy:onchain:testnet` | Deploy on-chain NFT to testnet |
+| `npm run mint:onchain:testnet` | Mint the on-chain NFT (no URI needed) |
 
 ---
 
@@ -153,6 +154,7 @@ npm run mint:testnet
 | Deployer Address | [`0x4A6AC203f3c46B070E9251902E35524572dd1a5b`](https://testnet.bscscan.com/address/0x4A6AC203f3c46B070E9251902E35524572dd1a5b) |
 | NFT Contract (IPFS) | [`0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a`](https://testnet.bscscan.com/address/0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a) |
 | NFT Contract (OnChain) | [`0x9726ECFD907cFb37FA1ea7248b5b2134Dcf9F87B`](https://testnet.bscscan.com/address/0x9726ECFD907cFb37FA1ea7248b5b2134Dcf9F87B) |
+| OnChain Mint Tx | [`0x4d6ddbb6...`](https://testnet.bscscan.com/tx/0x4d6ddbb68cc32f2dfa498609b0aeed59343c86d77b99f576a6436b63d59f3db8) (token #0 — SVG + metadata 100% on-chain) |
 | Token Tracker | [42 Art by jaehwkim (J42ART)](https://testnet.bscscan.com/token/0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a) |
 | Verified Source Code | [View on BscScan](https://testnet.bscscan.com/address/0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a#code) |
 | Mint Transaction | [`0xa28749f7...`](https://testnet.bscscan.com/tx/0xa28749f7c09d4d2b59d265c79eb892321584034b3fae2fe4e35ca5c1f73f8720) |
@@ -171,9 +173,10 @@ npm run mint:testnet
 
 ## Frontend (Bonus)
 
-The `frontend/` directory contains a single-page minting DApp:
+The `frontend/` directory contains a single-page DApp:
 
 - **No build tools required** - pure HTML/CSS/JS
+- **View / Verify NFT (read-only)** - enter a contract address + token ID to read `ownerOf` and `tokenURI` directly from the chain and render the image, owner, and attributes. No wallet needed; works for both the IPFS and the fully on-chain contract.
 - **MetaMask integration** - wallet connection and BSC Testnet auto-switch
 - **Minting UI** - input contract address, recipient, and metadata URI
 - **Result display** - shows tokenId, owner, tokenURI, and tx hash
