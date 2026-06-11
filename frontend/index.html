@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>42 Art by jaehwkim - NFT Minter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>42 Art by jaehwkim</h1>
+      <p class="subtitle">BEP-721 NFT Minter on BNB Chain Testnet</p>
+    </header>
+
+    <section class="wallet-section">
+      <button id="connectBtn" class="btn btn-primary">Connect MetaMask</button>
+      <div id="walletInfo" class="hidden">
+        <span class="label">Connected:</span>
+        <span id="walletAddress" class="address"></span>
+      </div>
+    </section>
+
+    <section class="mint-section">
+      <h2>Mint NFT</h2>
+      <div class="form-group">
+        <label for="contractAddress">Contract Address</label>
+        <input type="text" id="contractAddress" placeholder="0x...">
+      </div>
+      <div class="form-group">
+        <label for="recipient">Recipient Address</label>
+        <input type="text" id="recipient" placeholder="0x... (defaults to connected wallet)">
+      </div>
+      <div class="form-group">
+        <label for="metadataUri">Metadata URI</label>
+        <input type="text" id="metadataUri" placeholder="ipfs://...">
+      </div>
+      <button id="mintBtn" class="btn btn-mint" disabled>Mint NFT</button>
+    </section>
+
+    <section id="resultSection" class="result-section hidden">
+      <h2>Mint Result</h2>
+      <div class="result-grid">
+        <div class="result-item">
+          <span class="label">Token ID</span>
+          <span id="resultTokenId" class="value"></span>
+        </div>
+        <div class="result-item">
+          <span class="label">Owner</span>
+          <span id="resultOwner" class="value address"></span>
+        </div>
+        <div class="result-item">
+          <span class="label">Token URI</span>
+          <span id="resultTokenUri" class="value uri"></span>
+        </div>
+        <div class="result-item">
+          <span class="label">Transaction</span>
+          <a id="resultTxHash" class="value tx-link" href="#" target="_blank"></a>
+        </div>
+      </div>
+      <div id="nftPreview" class="nft-preview hidden">
+        <h3>NFT Preview</h3>
+        <img id="nftImage" alt="NFT Image">
+      </div>
+    </section>
+
+    <section id="statusSection" class="status-section hidden">
+      <div id="statusMessage" class="status-message"></div>
+    </section>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

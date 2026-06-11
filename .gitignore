@@ -1,0 +1,17 @@
+node_modules/
+
+# Hardhat artifacts
+deployment/cache/
+deployment/artifacts/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+
+# Assignment PDF
+TokenizeArt.pdf
+
+# Claude memory
+**/CLAUDE.md

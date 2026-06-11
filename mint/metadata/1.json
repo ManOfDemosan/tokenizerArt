@@ -1,0 +1,10 @@
+{
+  "name": "42 Genesis Art #0",
+  "description": "A unique digital artwork featuring the number 42, created by jaehwkim for the 42 TokenizeArt project on BNB Chain.",
+  "image": "ipfs://bafybeiboefdgqfcwrzvbtaleugwrggpi5ciwd6c3rhl2e7bggkhavzro3a",
+  "attributes": [
+    { "trait_type": "Artist", "value": "jaehwkim" },
+    { "trait_type": "School", "value": "42" },
+    { "trait_type": "Network", "value": "BNB Chain Testnet" }
+  ]
+}

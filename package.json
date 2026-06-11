@@ -1,0 +1,25 @@
+{
+  "name": "jaehwkim42-art",
+  "version": "1.0.0",
+  "description": "BEP-721 NFT smart contract for 42 TokenizeArt project",
+  "scripts": {
+    "clean": "hardhat clean",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:testnet": "hardhat run deployment/scripts/deploy.js --network bsctest",
+    "deploy:local": "hardhat run deployment/scripts/deploy.js",
+    "deploy:onchain:testnet": "hardhat run deployment/scripts/deploy-onchain.js --network bsctest",
+    "deploy:onchain:local": "hardhat run deployment/scripts/deploy-onchain.js",
+    "mint:testnet": "hardhat run mint/scripts/mint.js --network bsctest",
+    "mint:local": "hardhat run mint/scripts/mint.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "dotenv": "^17.2.3",
+    "hardhat": "^2.28.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0"
+  }
+}
