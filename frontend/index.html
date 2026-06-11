@@ -3,70 +3,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>42 Art by jaehwkim - NFT Minter</title>
+  <title>42 Art by jaehwkim - NFT DApp</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <header>
       <h1>42 Art by jaehwkim</h1>
-      <p class="subtitle">BEP-721 NFT Minter on BNB Chain Testnet</p>
+      <p class="subtitle">BEP-721 NFT DApp &middot; BNB Smart Chain Testnet</p>
     </header>
 
-    <section class="wallet-section">
-      <button id="connectBtn" class="btn btn-primary">Connect MetaMask</button>
-      <div id="walletInfo" class="hidden">
-        <span class="label">Connected:</span>
-        <span id="walletAddress" class="address"></span>
+    <!-- ============ VIEW / VERIFY (read-only, no wallet) ============ -->
+    <section class="card">
+      <h2>View &amp; Verify NFT <span class="badge gray">read-only</span></h2>
+      <p class="hint">Reads <code>ownerOf</code> &amp; <code>tokenURI</code> straight from the chain &mdash; no wallet needed.</p>
+
+      <div class="presets">
+        <button class="preset" data-contract="0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a" data-token="0">IPFS NFT #0</button>
+        <button class="preset" data-contract="0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a" data-token="1">IPFS NFT #1</button>
+        <button class="preset" data-contract="0x9726ECFD907cFb37FA1ea7248b5b2134Dcf9F87B" data-token="0">On-chain NFT #0</button>
+      </div>
+
+      <details class="manual">
+        <summary>Or look up any token manually</summary>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="lookupContract">Contract Address</label>
+            <input type="text" id="lookupContract" value="0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a">
+          </div>
+          <div class="form-group small">
+            <label for="lookupTokenId">Token ID</label>
+            <input type="text" id="lookupTokenId" value="0">
+          </div>
+        </div>
+        <button id="lookupBtn" class="btn-primary">Look up</button>
+      </details>
+
+      <div id="viewStatus" class="status-message hidden"></div>
+
+      <div id="nftCard" class="nft hidden">
+        <div class="nft-layout">
+          <div class="nft-image-wrap">
+            <img id="nftImage" alt="NFT artwork">
+          </div>
+          <div class="nft-meta">
+            <h3 id="nftName"></h3>
+            <p id="nftDesc" class="desc"></p>
+
+            <div class="field">
+              <span class="field-label">Owner</span>
+              <a id="nftOwner" class="field-value mono link" target="_blank" rel="noopener"></a>
+            </div>
+            <div class="field">
+              <span class="field-label">Token ID</span>
+              <span id="nftTokenId" class="field-value mono"></span>
+            </div>
+            <div class="field">
+              <span class="field-label">Storage</span>
+              <span id="nftStorage" class="field-value"></span>
+            </div>
+            <div class="field">
+              <span class="field-label">Token URI</span>
+              <a id="nftUri" class="field-value mono link uri" target="_blank" rel="noopener"></a>
+            </div>
+
+            <div id="nftAttributes" class="attributes"></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="mint-section">
-      <h2>Mint NFT</h2>
+    <!-- ============ MINT (wallet required, owner only) ============ -->
+    <section class="card">
+      <h2>Mint NFT <span class="badge">owner only</span></h2>
+
+      <div class="wallet-row">
+        <button id="connectBtn" class="btn-primary">Connect MetaMask</button>
+        <span id="walletInfo" class="wallet-info hidden">Connected: <span id="walletAddress" class="mono"></span></span>
+      </div>
+
+      <div class="mint-mode">
+        <button class="mode-btn active" data-mode="ipfs">IPFS NFT</button>
+        <button class="mode-btn" data-mode="onchain">On-chain NFT</button>
+      </div>
+
       <div class="form-group">
-        <label for="contractAddress">Contract Address</label>
-        <input type="text" id="contractAddress" placeholder="0x...">
+        <label for="mintContract">Contract Address</label>
+        <input type="text" id="mintContract" value="0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a">
       </div>
       <div class="form-group">
-        <label for="recipient">Recipient Address</label>
-        <input type="text" id="recipient" placeholder="0x... (defaults to connected wallet)">
+        <label for="mintRecipient">Recipient <span class="muted-inline">(optional &mdash; defaults to your wallet)</span></label>
+        <input type="text" id="mintRecipient" placeholder="0x...">
       </div>
-      <div class="form-group">
-        <label for="metadataUri">Metadata URI</label>
-        <input type="text" id="metadataUri" placeholder="ipfs://...">
+      <div class="form-group" id="uriGroup">
+        <label for="mintUri">Metadata URI <span class="muted-inline">(this is the tokenURI)</span></label>
+        <input type="text" id="mintUri" value="ipfs://bafkreig23np2uyvcbhzyd4pgrukueipn4gpkyowjorqq5egdl5ir65xqhy">
+        <p class="hint">IPFS URL of the metadata JSON. Default = your existing &ldquo;42 Genesis Art&rdquo; metadata.</p>
       </div>
-      <button id="mintBtn" class="btn btn-mint" disabled>Mint NFT</button>
+      <p class="hint hidden" id="onchainHint">On-chain NFT needs no URI &mdash; the contract generates the SVG + metadata itself.</p>
+      <button id="mintBtn" class="btn-mint" disabled>Mint IPFS NFT</button>
+
+      <div id="mintStatus" class="status-message hidden"></div>
+
+      <div id="mintResult" class="mint-result hidden">
+        <div class="field">
+          <span class="field-label">Minted Token ID</span>
+          <span id="resultTokenId" class="field-value mono"></span>
+        </div>
+        <div class="field">
+          <span class="field-label">Owner</span>
+          <span id="resultOwner" class="field-value mono"></span>
+        </div>
+        <div class="field">
+          <span class="field-label">Transaction</span>
+          <a id="resultTxHash" class="field-value mono link" href="#" target="_blank" rel="noopener"></a>
+        </div>
+        <p class="hint">Tip: copy the token ID into the viewer above to see it.</p>
+      </div>
     </section>
 
-    <section id="resultSection" class="result-section hidden">
-      <h2>Mint Result</h2>
-      <div class="result-grid">
-        <div class="result-item">
-          <span class="label">Token ID</span>
-          <span id="resultTokenId" class="value"></span>
-        </div>
-        <div class="result-item">
-          <span class="label">Owner</span>
-          <span id="resultOwner" class="value address"></span>
-        </div>
-        <div class="result-item">
-          <span class="label">Token URI</span>
-          <span id="resultTokenUri" class="value uri"></span>
-        </div>
-        <div class="result-item">
-          <span class="label">Transaction</span>
-          <a id="resultTxHash" class="value tx-link" href="#" target="_blank"></a>
-        </div>
-      </div>
-      <div id="nftPreview" class="nft-preview hidden">
-        <h3>NFT Preview</h3>
-        <img id="nftImage" alt="NFT Image">
-      </div>
-    </section>
-
-    <section id="statusSection" class="status-section hidden">
-      <div id="statusMessage" class="status-message"></div>
-    </section>
+    <footer>
+      <a href="https://testnet.bscscan.com/token/0x5F51AF1cb11E90Aa4d4C158fd093B77857c8E56a" target="_blank" rel="noopener">View collection on BscScan &#8599;</a>
+    </footer>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
